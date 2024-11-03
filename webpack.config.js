@@ -1,7 +1,8 @@
+const DotenvWebpackPlugin = require("dotenv-webpack");
 const path = require("path");
 
 /** @type {import("webpack/types").Configuration} */
-module.exports = {
+module.exports = (env) => ({
 	entry: "./src/index.js",
 	output: {
 		filename: "bundle.js",
@@ -15,4 +16,5 @@ module.exports = {
 			},
 		],
 	},
-};
+	plugins: [env.production && new DotenvWebpackPlugin()],
+});
